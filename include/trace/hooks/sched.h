@@ -232,6 +232,14 @@ DECLARE_RESTRICTED_HOOK(android_rvh_sched_exec,
 	TP_PROTO(bool *cond),
 	TP_ARGS(cond), 1);
 
+DECLARE_HOOK(android_vh_sched_move_task,
+	TP_PROTO(struct task_struct *tsk),
+	TP_ARGS(tsk));
+
+DECLARE_HOOK(android_vh_reweight_entity,
+	TP_PROTO(struct sched_entity *se),
+	TP_ARGS(se));
+
 DECLARE_HOOK(android_vh_build_sched_domains,
 	TP_PROTO(bool has_asym),
 	TP_ARGS(has_asym));
@@ -465,6 +473,10 @@ DECLARE_HOOK(android_vh_prio_restore,
 DECLARE_HOOK(android_vh_set_task_comm,
 	TP_PROTO(struct task_struct *p),
 	TP_ARGS(p));
+
+DECLARE_HOOK(android_vh_task_ux_op,
+	TP_PROTO(struct task_struct *tsk, int op, void *buf),
+	TP_ARGS(tsk, op, buf));
 
 #endif /* _TRACE_HOOK_SCHED_H */
 /* This part must be outside protection */
